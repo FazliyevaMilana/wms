@@ -5,67 +5,61 @@
 
 {% block extra_css %}
     <style>
-        /* Card styling */
         .card-box {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            background: linear-gradient(to bottom right, #fefefe, #f1f5f9);
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
             padding: 24px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
         }
         .card-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
         }
         .header-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: #1a202c;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 14px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-        .text-primary { color: #319795 !important; } /* Teal */
-        .text-success { color: #ed64a6 !important; } /* Coral */
-        .text-info { color: #4c51bf !important; } /* Indigo */
-        .text-warning { color: #d69e2e !important; } /* Amber */
+        .text-primary { color: #0d9488 !important; }
+        .text-success { color: #ec4899 !important; }
+        .text-info { color: #6366f1 !important; }
+        .text-warning { color: #f59e0b !important; }
         h2.mb-0 {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.25rem;
-            font-weight: 600;
-            line-height: 1.2;
+            font-size: 2rem;
+            font-weight: 700;
         }
-        /* Chart containers */
         #sparkline-orders {
-            margin-top: 20px;
-            padding: 10px;
-            background: #f7fafc;
-            border-radius: 8px;
+            margin-top: 16px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
         }
-        [data-plugin="circliful"] {
-            margin: 20px auto;
+        [data-plugin="circliful"],
+        [data-plugin="peity-pie"],
+        [data-plugin="peity-donut"] {
+            margin: 16px auto;
             padding: 10px;
+            background: #f1f5f9;
+            border-radius: 10px;
         }
-        [data-plugin="peity-pie"], [data-plugin="peity-donut"] {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            background: #f7fafc;
-            border-radius: 8px;
-        }
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .card-box {
-                padding: 16px;
+                padding: 18px;
             }
             h2.mb-0 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
-            [data-plugin="peity-pie"], [data-plugin="peity-donut"] {
-                width: 100px;
-                height: 100px;
+            [data-plugin="peity-pie"],
+            [data-plugin="peity-donut"] {
+                width: 90px;
+                height: 90px;
             }
         }
     </style>
@@ -115,8 +109,8 @@
                  data-info="Received"
                  data-width="25"
                  data-percent="{{ percent_received }}"
-                 data-fgcolor="#319795"
-                 data-bgcolor="#edf2f7"
+                 data-fgcolor="#0d9488"
+                 data-bgcolor="#e2e8f0"
                  data-fontsize="24"
                  data-fontweight="600">
             </div>
@@ -129,7 +123,7 @@
         <div class="card-box">
             <h4 class="header-title">Mahsulotlar taqsimoti (Pie)</h4>
             <span data-plugin="peity-pie"
-                  data-colors="#319795,#4a5568,#ed64a6,#2b6cb0,#d69e2e,#c53030"
+                  data-colors="#0d9488,#4b5563,#ec4899,#2563eb,#f59e0b,#dc2626"
                   data-width="140"
                   data-height="140">
                   {{ pie_data }}
@@ -140,7 +134,7 @@
         <div class="card-box">
             <h4 class="header-title">Zaxira holati (Donut)</h4>
             <span data-plugin="peity-donut"
-                  data-colors="#319795,#d69e2e"
+                  data-colors="#0d9488,#f59e0b"
                   data-width="140"
                   data-height="140">{{ donut_data }}</span>
         </div>
@@ -165,12 +159,12 @@
         $('[data-plugin="peity-pie"]').peity("pie", {
             width: 140,
             height: 140,
-            fill: ["#319795", "#4a5568", "#ed64a6", "#2b6cb0", "#d69e2e", "#c53030"]
+            fill: ["#0d9488", "#4b5563", "#ec4899", "#2563eb", "#f59e0b", "#dc2626"]
         });
         $('[data-plugin="peity-donut"]').peity("donut", {
             width: 140,
             height: 140,
-            fill: ["#319795", "#d69e2e"]
+            fill: ["#0d9488", "#f59e0b"]
         });
 
         $("#sparkline-orders").sparkline(
@@ -179,12 +173,12 @@
                 type: 'line',
                 width: '100%',
                 height: '220',
-                lineColor: '#319795',
-                fillColor: 'rgba(49, 151, 149, 0.1)',
+                lineColor: '#0d9488',
+                fillColor: 'rgba(13, 148, 136, 0.1)',
                 lineWidth: 2.5,
-                spotColor: '#ed64a6',
-                minSpotColor: '#ed64a6',
-                maxSpotColor: '#ed64a6',
+                spotColor: '#ec4899',
+                minSpotColor: '#ec4899',
+                maxSpotColor: '#ec4899',
                 chartRangeMin: 0
             }
         );

@@ -7,17 +7,17 @@
     <div class="col-sm-12">
         <!-- Add Employee Button -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal">
-            + Add Employee
+            + New Employee
         </button>
     </div>
 </div>
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-hover table-bordered">
+    <thead class="thead-light">
         <tr>
             <th>Full Name</th>
             <th>Role</th>
-            <th>Actions</th>
+            <th style="width: 150px;">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -26,11 +26,9 @@
             <td>{{ emp.full_name }}</td>
             <td>{{ emp.get_role_display }}</td>
             <td>
-                <!-- Edit link -->
-                <a href="{% url 'employee_update' emp.pk %}" class="btn btn-primary btn-sm">Edit</a>
-                <!-- Delete modal trigger -->
+                <a href="{% url 'employee_update' emp.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
                 <button type="button"
-                        class="btn btn-danger btn-sm"
+                        class="btn btn-sm btn-outline-danger"
                         data-toggle="modal"
                         data-target="#deleteEmployeeModal{{ emp.pk }}">
                     Delete
@@ -40,19 +38,19 @@
 
         <!-- ===== Delete Modal for this Employee ===== -->
         <div class="modal fade" id="deleteEmployeeModal{{ emp.pk }}" tabindex="-1" role="dialog"
-             aria-labelledby="deleteEmployeeLabel{{ emp.pk }}">
+             aria-labelledby="deleteEmployeeLabel{{ emp.pk }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form method="post" action="{% url 'employee_delete' emp.pk %}">
                     {% csrf_token %}
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteEmployeeLabel{{ emp.pk }}">Confirm Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title" id="deleteEmployeeLabel{{ emp.pk }}">Confirm Deletion</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal">
                                 <span>&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            Rostdan ham “<strong>{{ emp.full_name }}</strong>” xodimini o‘chirmoqchimisiz?
+                            Are you sure you want to delete <strong>{{ emp.full_name }}</strong>?
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Yes, Delete</button>
@@ -65,21 +63,23 @@
         <!-- ===== End Delete Modal ===== -->
 
     {% empty %}
-        <tr><td colspan="3">No employees defined.</td></tr>
+        <tr>
+            <td colspan="3" class="text-center text-muted">No employees available.</td>
+        </tr>
     {% endfor %}
     </tbody>
 </table>
 
 <!-- ===== Add Employee Modal ===== -->
-<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel">
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form method="post" action="{% url 'employee_list' %}">
             {% csrf_token %}
             <input type="hidden" name="create" value="1">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addEmployeeLabel">Add Employee</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="addEmployeeLabel">Add New Employee</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
                 </div>
                 <div class="modal-body">
                     {{ create_form.as_p }}
