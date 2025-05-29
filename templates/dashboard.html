@@ -6,8 +6,8 @@
 {% block extra_css %}
     <style>
         .card-box {
-            background: linear-gradient(to bottom right, #fefefe, #f1f5f9);
-            border: 1px solid #cbd5e1;
+            background: linear-gradient(to bottom right, #1a3c34, #0f172a); /* Green-black gradient */
+            border: 1px solid #4caf50; /* Green border */
             border-radius: 16px;
             padding: 24px;
             transition: all 0.3s ease;
@@ -15,30 +15,31 @@
         }
         .card-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 20px rgba(76, 175, 80, 0.2); /* Green shadow */
         }
         .header-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #c8e6c9; /* Light green */
             margin-bottom: 14px;
             letter-spacing: 0.4px;
             text-transform: uppercase;
         }
-        .text-primary { color: #0d9488 !important; }
-        .text-success { color: #ec4899 !important; }
-        .text-info { color: #6366f1 !important; }
-        .text-warning { color: #f59e0b !important; }
+        .text-primary { color: #4caf50 !important; } /* Green */
+        .text-success { color: #a5d6a7 !important; } /* Lighter green */
+        .text-info { color: #2e7d32 !important; } /* Medium green */
+        .text-warning { color: #66bb6a !important; } /* Another green shade */
         h2.mb-0 {
             font-family: 'Poppins', sans-serif;
             font-size: 2rem;
             font-weight: 700;
+            color: #c8e6c9; /* Light green */
         }
         #sparkline-orders {
             margin-top: 16px;
             padding: 12px;
-            background: #f8fafc;
+            background: #0f172a; /* Blackish */
             border-radius: 10px;
         }
         [data-plugin="circliful"],
@@ -46,7 +47,7 @@
         [data-plugin="peity-donut"] {
             margin: 16px auto;
             padding: 10px;
-            background: #f1f5f9;
+            background: #0f172a; /* Blackish */
             border-radius: 10px;
         }
         @media (max-width: 768px) {
@@ -109,8 +110,8 @@
                  data-info="Received"
                  data-width="25"
                  data-percent="{{ percent_received }}"
-                 data-fgcolor="#0d9488"
-                 data-bgcolor="#e2e8f0"
+                 data-fgcolor="#4caf50" /* Green */
+                 data-bgcolor="#0f172a" /* Blackish */
                  data-fontsize="24"
                  data-fontweight="600">
             </div>
@@ -123,7 +124,7 @@
         <div class="card-box">
             <h4 class="header-title">Mahsulotlar taqsimoti (Pie)</h4>
             <span data-plugin="peity-pie"
-                  data-colors="#0d9488,#4b5563,#ec4899,#2563eb,#f59e0b,#dc2626"
+                  data-colors="#4caf50,#a5d6a7,#2e7d32,#66bb6a,#1a3c34,#0f172a"
                   data-width="140"
                   data-height="140">
                   {{ pie_data }}
@@ -134,7 +135,7 @@
         <div class="card-box">
             <h4 class="header-title">Zaxira holati (Donut)</h4>
             <span data-plugin="peity-donut"
-                  data-colors="#0d9488,#f59e0b"
+                  data-colors="#4caf50,#0f172a"
                   data-width="140"
                   data-height="140">{{ donut_data }}</span>
         </div>
@@ -159,12 +160,12 @@
         $('[data-plugin="peity-pie"]').peity("pie", {
             width: 140,
             height: 140,
-            fill: ["#0d9488", "#4b5563", "#ec4899", "#2563eb", "#f59e0b", "#dc2626"]
+            fill: ["#4caf50", "#a5d6a7", "#2e7d32", "#66bb6a", "#1a3c34", "#0f172a"] /* Green-black palette */
         });
         $('[data-plugin="peity-donut"]').peity("donut", {
             width: 140,
             height: 140,
-            fill: ["#0d9488", "#f59e0b"]
+            fill: ["#4caf50", "#0f172a"] /* Green-black */
         });
 
         $("#sparkline-orders").sparkline(
@@ -173,12 +174,12 @@
                 type: 'line',
                 width: '100%',
                 height: '220',
-                lineColor: '#0d9488',
-                fillColor: 'rgba(13, 148, 136, 0.1)',
+                lineColor: '#4caf50', /* Green */
+                fillColor: 'rgba(76, 175, 80, 0.1)', /* Light green fill */
                 lineWidth: 2.5,
-                spotColor: '#ec4899',
-                minSpotColor: '#ec4899',
-                maxSpotColor: '#ec4899',
+                spotColor: '#a5d6a7', /* Lighter green */
+                minSpotColor: '#a5d6a7',
+                maxSpotColor: '#a5d6a7',
                 chartRangeMin: 0
             }
         );
